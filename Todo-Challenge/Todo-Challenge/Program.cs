@@ -37,7 +37,7 @@ class Program
                         "n" => false,
                         _ => false,
                     };
-                    TodoItem newItem = new(lastId++, description, complete);
+                    TodoItem newItem = new(++lastId, description, complete);
 
                     itemList.Add(newItem);
 
