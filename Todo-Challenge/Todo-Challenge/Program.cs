@@ -1,4 +1,4 @@
-﻿using Todo_Challenge;
+using Todo_Challenge;
 
 class Program
 {
@@ -10,7 +10,7 @@ class Program
 
         while (true)
         {
-            Console.WriteLine("Available commands:\ncreate\nview\nremove\ncomplete {id}\n\n");
+            Console.WriteLine("Available commands:\ncreate\nview\nremove\ncomplete\n\n");
 
             switch (Console.ReadLine())
             {
@@ -55,11 +55,11 @@ class Program
 
                 case "remove":
                     Console.WriteLine("Enter id to remove");
-                    string? idInput = Console.ReadLine();
+                    string? idRemoveInput = Console.ReadLine();
 
-                    if (int.TryParse(idInput, out int id))
+                    if (int.TryParse(idRemoveInput, out int idRemove))
                     {
-                        TodoItem foundItem = itemList.Find(item => item.id == id);
+                        TodoItem foundItem = itemList.Find(item => item.id == idRemove);
 
                         if (foundItem != null)
                         {
@@ -68,7 +68,7 @@ class Program
                         }
                         else
                         {
-                            Console.WriteLine($"No item with id: {id} was found.\n");
+                            Console.WriteLine($"No item with id: {idRemove} was found.\n");
                         }
                     }
                     else
