@@ -10,7 +10,7 @@ class Program
 
         while (true)
         {
-            Console.WriteLine("Available commands:\ncreate\nview\nremove {id}\ncomplete {id}\n\n");
+            Console.WriteLine("Available commands:\ncreate\nview\nremove\ncomplete {id}\n\n");
 
             switch (Console.ReadLine())
             {
@@ -51,6 +51,30 @@ class Program
                         Console.WriteLine($"Id: {item.id}, Description: {item.description}, Complete: {item.complete}");
                     }
                     Console.WriteLine("\n\n");
+                    break;
+
+                case "remove":
+                    Console.WriteLine("Enter id to remove");
+                    string? idInput = Console.ReadLine();
+
+                    if (int.TryParse(idInput, out int id))
+                    {
+                        TodoItem foundItem = itemList.Find(item => item.id == id);
+
+                        if (foundItem != null)
+                        {
+                            itemList.Remove(foundItem);
+                            Console.WriteLine("item removed\n");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"No item with id: {id} was found.\n");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Invalid id\n");
+                    }
                     break;
 
                 default:
