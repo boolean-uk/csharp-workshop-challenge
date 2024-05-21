@@ -1,4 +1,4 @@
-using Todo_Challenge;
+﻿using Todo_Challenge;
 
 class Program
 {
@@ -75,6 +75,31 @@ class Program
                     {
                         Console.WriteLine($"Invalid id\n");
                     }
+                    break;
+
+                case "complete":
+                    Console.WriteLine("Enter id to complete");
+                    string? idCompleteInput = Console.ReadLine();
+
+                    if (int.TryParse(idCompleteInput, out int idComplete))
+                    {
+                        TodoItem foundItem = itemList.Find(item => item.id == idComplete);
+
+                        if (foundItem != null)
+                        {
+                            foundItem.complete = true;
+                            Console.WriteLine("item completed\n");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"No item with id: {idComplete} was found.\n");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Invalid id\n");
+                    }
+
                     break;
 
                 default:
