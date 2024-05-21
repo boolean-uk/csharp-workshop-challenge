@@ -87,8 +87,20 @@ class Program
 
                         if (foundItem != null)
                         {
-                            foundItem.complete = true;
-                            Console.WriteLine("item completed\n");
+                            Console.WriteLine($"Item completeness is set to {foundItem.complete}. Set item to {!foundItem.complete}?[y/n]");
+                            string? toggleCompleteConfirmation = Console.ReadLine();
+
+                            if (toggleCompleteConfirmation == "y")
+                            {
+                                foundItem.complete = !foundItem.complete;
+                                Console.WriteLine($"item completeness is now {foundItem.complete}\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Command aborted");
+                                break;
+                            }
+
                         }
                         else
                         {
