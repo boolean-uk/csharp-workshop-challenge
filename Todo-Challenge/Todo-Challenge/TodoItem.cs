@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +15,11 @@ namespace Todo_Challenge
 
         public TodoItem? NextTodoItem { get; set; } = null;
 
-        public TodoItem(string name)
+        public TodoItem(string name, TodoList todoList)
         {
+            Id = todoList.NextId;
             Name = name;
+            todoList.IncreaseId();
         }
     }
 }

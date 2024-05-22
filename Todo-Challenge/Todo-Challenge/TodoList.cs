@@ -17,5 +17,9 @@ namespace Todo_Challenge
             Name = name;
         }
 
+        public void IncreaseId()
+        {
+            NextId++;
+        }
     }
 }
