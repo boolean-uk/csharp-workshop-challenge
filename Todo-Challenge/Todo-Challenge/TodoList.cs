@@ -83,5 +83,10 @@ namespace Todo_Challenge
                 previousItem.NextTodoItem = item.NextTodoItem;
             }
         }
+        public void ToggleItemCompletionStatusWhereNameIs(string name)
+        {
+            var item = GetTodoItemByName(name);
+            item.Completed = !item.Completed;
+        }
     }
 }
