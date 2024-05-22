@@ -8,13 +8,15 @@ string? line = Console.ReadLine();
 
 while (line != "exit")
 {
-    switch (line)
+    if (line == null) break;
+    char refNum = CommandHandler.GetCommandRefNum(line);
+    switch (refNum)
     {
-        case "1":
+        case '1':
             break;
-        case "2":
+        case '2':
             break;
-        case "3":
+        case '3':
             break;
     }
     line = Console.ReadLine();
