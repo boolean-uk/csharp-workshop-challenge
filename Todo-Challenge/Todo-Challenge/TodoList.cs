@@ -28,9 +28,9 @@ namespace Todo_Challenge
         public void ViewList()
         {
             var item = FirstTodoItem;
-            var isComplete = item.ReadCompletionStatus();
             while(item != null)
             {
+                var isComplete = item.ReadCompletionStatus();
                 Console.WriteLine(item.Name + " completion status: " + isComplete);
                 item = item.NextTodoItem;
 
