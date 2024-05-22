@@ -33,7 +33,16 @@ namespace ToDoListApp
                             break;
 
                         case 2:
-                            Console.Write("Section 2 not completed");
+                            Console.Write("Enter task number to complete: ");
+                            if (int.TryParse(Console.ReadLine(), out int taskIndex) && taskIndex > 0 && taskIndex <= todoList.Count)
+                            {
+                                todoList[taskIndex - 1].IsCompleted = true;
+                                Console.WriteLine("Task completed.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid task number.");
+                            }
                             break;
 
                         case 3:
