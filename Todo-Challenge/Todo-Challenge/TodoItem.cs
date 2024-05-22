@@ -14,11 +14,9 @@ namespace Todo_Challenge
 
         public TodoItem? NextTodoItem { get; set; } = null;
 
-        public TodoItem(int id, string name)
+        public TodoItem(string name)
         {
-            Id = id;
-            Name = name ?? string.Empty;
-            Completed = false;
+            Name = name;
         }
     }
 }
