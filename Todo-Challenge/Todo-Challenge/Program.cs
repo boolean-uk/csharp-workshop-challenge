@@ -25,30 +25,30 @@ namespace ToDoListApp
                     switch (choice)
                     {
                         case 1:
-                            Console.Write("Enter task: ");
+                            Console.Write("Enter todo: ");
                             string description = Console.ReadLine();
                             ToDoItem newItem = new(description);
                             todoList.Add(newItem);
-                            Console.WriteLine("Task added.");
+                            Console.WriteLine("Todo added.");
                             break;
 
                         case 2:
-                            Console.Write("Enter task number to complete: ");
-                            if (int.TryParse(Console.ReadLine(), out int taskIndex) && taskIndex > 0 && taskIndex <= todoList.Count)
+                            Console.Write("Enter todo number to complete: ");
+                            if (int.TryParse(Console.ReadLine(), out int todoIndex) && todoIndex > 0 && todoIndex <= todoList.Count)
                             {
-                                todoList[taskIndex - 1].IsCompleted = true;
-                                Console.WriteLine("Task completed.");
+                                todoList[todoIndex - 1].IsCompleted = true;
+                                Console.WriteLine("Todo completed.");
                             }
                             else
                             {
-                                Console.WriteLine("Invalid task number.");
+                                Console.WriteLine("Invalid todo number.");
                             }
                             break;
 
                         case 3:
                             if (todoList.Count == 0)
                             {
-                                Console.WriteLine("\nYour to-do list is empty.\n");
+                                Console.WriteLine("\nYour todo list is empty.\n");
                             }
                             else
                             {
@@ -62,12 +62,20 @@ namespace ToDoListApp
                             break;
 
                         case 4:
-                            Console.WriteLine("Section 4 not completed");
+                            Console.Write("Enter todo number to delete: ");
+                            if (int.TryParse(Console.ReadLine(), out int todoremoveIndex) && todoremoveIndex > 0 && todoremoveIndex <= todoList.Count)
+                            {
+                                todoList.RemoveAt(todoremoveIndex - 1);
+                                Console.WriteLine("Todo deleted.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid todo number.");
+                            }
                             break;
 
                         case 5:
-                            Console.WriteLine("Section 5 not completed");
-                            break;
+                            return;
                     }
                 }
             }
