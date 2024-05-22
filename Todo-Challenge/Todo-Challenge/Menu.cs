@@ -15,10 +15,11 @@ namespace Todo_Challenge
             Console.WriteLine("To edit it, use the options below");
             Console.WriteLine();
             Console.WriteLine("OPTIONS");
-            Console.WriteLine("input:         action:");
-            Console.WriteLine("1 <todo name>  create a new todo");
-            Console.WriteLine("2 <todo name>  delete a todo");
-            Console.WriteLine("3 <todo name>  set a todo's completion status to true or false");
+            Console.WriteLine("input:               action:");
+            Console.WriteLine("  1 <todo name> ->     create a new todo");
+            Console.WriteLine("  2 <todo name> ->     delete a todo");
+            Console.WriteLine("  3 <todo name> ->     set a todo's completion status to true or false");
+            Console.WriteLine("  exit          ->     stop running this app");
         }
     }
 }
