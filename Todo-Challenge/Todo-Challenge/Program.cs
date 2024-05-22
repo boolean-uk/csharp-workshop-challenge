@@ -22,6 +22,7 @@ while (line != "exit")
             list.DeleteItemWhereNameIs(itemName);
             break;
         case '3':
+            list.ToggleItemCompletionStatusWhereNameIs(itemName);
             break;
     }
     list.ViewList();
