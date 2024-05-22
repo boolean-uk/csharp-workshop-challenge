@@ -9,9 +9,9 @@ namespace ToDoListApp
         {
             List<ToDoItem> todoList = new List<ToDoItem>();
 
+            Console.WriteLine("Welcome to the To-Do List App!");
             while (true)
             {
-                Console.WriteLine("Welcome to the To-Do List App!");
                 Console.WriteLine("\nPlease choose an action:");
                 Console.WriteLine("1. Add todo item");
                 Console.WriteLine("2. Complete todo item");
@@ -30,6 +30,34 @@ namespace ToDoListApp
                             ToDoItem newItem = new(description);
                             todoList.Add(newItem);
                             Console.WriteLine("Task added.");
+                            break;
+
+                        case 2:
+                            Console.Write("Section 2 not completed");
+                            break;
+
+                        case 3:
+                            if (todoList.Count == 0)
+                            {
+                                Console.WriteLine("\nYour to-do list is empty.\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nYour To-Do List:");
+                                for (int i = 0; i < todoList.Count; i++)
+                                {
+                                    string status = todoList[i].IsCompleted ? "[X]" : "[ ]"; 
+                                    Console.WriteLine($"{i + 1}. {status} {todoList[i].Description}");
+                                }
+                            }
+                            break;
+
+                        case 4:
+                            Console.WriteLine("Section 4 not completed");
+                            break;
+
+                        case 5:
+                            Console.WriteLine("Section 5 not completed");
                             break;
                     }
                 }
