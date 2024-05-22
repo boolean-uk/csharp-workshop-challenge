@@ -25,5 +25,15 @@ namespace Todo_Challenge
         }
 
         public bool DoesNotContainFirstTodoItem() { return FirstTodoItem == null; }
+        public void ViewList()
+        {
+            var item = FirstTodoItem;
+            while(item != null)
+            {
+                Console.WriteLine(item.Name + " completion status: ");
+                item = item.NextTodoItem;
+
+            }
+        }
     }
 }
