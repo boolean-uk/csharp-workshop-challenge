@@ -27,6 +27,11 @@ namespace Todo_Challenge
             }
         }
 
+        public string ReadCompletionStatus()
+        {
+            return Completed ? "done" : "to do";
+        }
+
         public TodoItem(string name, TodoList todoList)
         {
             Id = todoList.NextId;
