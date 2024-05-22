@@ -32,11 +32,11 @@ namespace ToDoListApp
                             break;
 
                         case 2: // Complete specific todo items
-                            Console.Write("Enter todo number to complete: ");
+                            Console.Write("\nEnter todo number to complete: \n");
                             if (int.TryParse(Console.ReadLine(), out int todoIndex) && todoIndex > 0 && todoIndex <= todoList.Count)
                             {
                                 todoList[todoIndex - 1].IsCompleted = true;
-                                Console.WriteLine($"\nTodo item '{todoList[todoIndex - 1]}' completed.\n");
+                                Console.WriteLine($"\nTodo item '{todoList[todoIndex - 1].Description}' completed.\n");
                             }
                             else
                             {
@@ -65,7 +65,7 @@ namespace ToDoListApp
                             if (int.TryParse(Console.ReadLine(), out int todoremoveIndex) && todoremoveIndex > 0 && todoremoveIndex <= todoList.Count)
                             {
                                 todoList.RemoveAt(todoremoveIndex - 1);
-                                Console.WriteLine($"\nTodo number {todoremoveIndex - 1} deleted.\n");
+                                Console.WriteLine($"\nTodo number {todoremoveIndex} deleted.\n");
                             }
                             else
                             {
