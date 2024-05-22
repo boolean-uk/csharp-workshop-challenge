@@ -12,13 +12,14 @@ while (line != "exit")
 {
     if (line == null) break;
     char refNum = CommandHandler.GetCommandRefNum(line);
+    string itemName = CommandHandler.GetTodoItemName(line);
     switch (refNum)
     {
         case '1':
-            string itemName = CommandHandler.GetTodoItemName(line);
             new TodoItem(itemName, list);
             break;
         case '2':
+            list.DeleteItemWhereNameIs(itemName);
             break;
         case '3':
             break;
