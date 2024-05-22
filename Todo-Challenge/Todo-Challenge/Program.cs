@@ -19,33 +19,32 @@ namespace ToDoListApp
                 Console.WriteLine("4. Delete todo item");
                 Console.WriteLine("5. Exit");
 
-            int choice;
-                if (int.TryParse(Console.ReadLine(), out choice))
+                if (int.TryParse(Console.ReadLine(), out int choice))
                 {
                     switch (choice)
                     {
-                        case 1:
-                            Console.Write("Enter todo: ");
+                        case 1: // Add a todo item
+                            Console.Write("\nEnter todo: \n");
                             string description = Console.ReadLine();
                             ToDoItem newItem = new(description);
                             todoList.Add(newItem);
-                            Console.WriteLine("Todo added.");
+                            Console.WriteLine($"\nTodo item: '{description}' added.\n");
                             break;
 
-                        case 2:
+                        case 2: // Complete specific todo items
                             Console.Write("Enter todo number to complete: ");
                             if (int.TryParse(Console.ReadLine(), out int todoIndex) && todoIndex > 0 && todoIndex <= todoList.Count)
                             {
                                 todoList[todoIndex - 1].IsCompleted = true;
-                                Console.WriteLine("Todo completed.");
+                                Console.WriteLine($"\nTodo item '{todoList[todoIndex - 1]}' completed.\n");
                             }
                             else
                             {
-                                Console.WriteLine("Invalid todo number.");
+                                Console.WriteLine("\nInvalid todo number.\n");
                             }
                             break;
 
-                        case 3:
+                        case 3: // View all todo items
                             if (todoList.Count == 0)
                             {
                                 Console.WriteLine("\nYour todo list is empty.\n");
@@ -61,16 +60,16 @@ namespace ToDoListApp
                             }
                             break;
 
-                        case 4:
-                            Console.Write("Enter todo number to delete: ");
+                        case 4: // Delete a todo item
+                            Console.Write("\nEnter todo number to delete: \n");
                             if (int.TryParse(Console.ReadLine(), out int todoremoveIndex) && todoremoveIndex > 0 && todoremoveIndex <= todoList.Count)
                             {
                                 todoList.RemoveAt(todoremoveIndex - 1);
-                                Console.WriteLine("Todo deleted.");
+                                Console.WriteLine($"\nTodo number {todoremoveIndex - 1} deleted.\n");
                             }
                             else
                             {
-                                Console.WriteLine("Invalid todo number.");
+                                Console.WriteLine("\nInvalid todo number.\n");
                             }
                             break;
 
