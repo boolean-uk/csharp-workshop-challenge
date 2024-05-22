@@ -10,6 +10,8 @@ namespace Todo_Challenge
     {
         public string Name;
         public TodoItem? FirstTodoItem { get; set; } = null;
+
+        public TodoItem? LastTodoItem { get; set; } = null;
         public int NextId { get; set; } = 1;
 
         public TodoList(string name)
@@ -21,5 +23,7 @@ namespace Todo_Challenge
         {
             NextId++;
         }
+
+        public bool DoesNotContainFirstTodoItem() { return FirstTodoItem == null; }
     }
 }

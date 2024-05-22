@@ -12,14 +12,29 @@ namespace Todo_Challenge
         public int Id { get; set; }
         public string? Name { get; set; }
         public bool Completed { get; set; } = false;
-
         public TodoItem? NextTodoItem { get; set; } = null;
+
+        private readonly TodoList _list;
+        private void LinkToPreviousItem()
+        {
+            if (_list.DoesNotContainFirstTodoItem())
+            {
+                _list.FirstTodoItem = this;
+            } 
+            if (_list.LastTodoItem != null)
+            {
+                _list.LastTodoItem.NextTodoItem = this;
+            }
+        }
 
         public TodoItem(string name, TodoList todoList)
         {
             Id = todoList.NextId;
             Name = name;
+            _list = todoList;
             todoList.IncreaseId();
+            LinkToPreviousItem();
+            todoList.LastTodoItem = this;
         }
     }
 }
