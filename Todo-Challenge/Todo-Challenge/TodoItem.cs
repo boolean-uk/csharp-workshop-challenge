@@ -15,11 +15,13 @@ namespace Todo_Challenge
         public TodoItem? NextTodoItem { get; set; } = null;
 
         private readonly TodoList _list;
+
         private void LinkToPreviousItem()
         {
             if (_list.DoesNotContainFirstTodoItem())
             {
                 _list.FirstTodoItem = this;
+                return;
             } 
             if (_list.LastTodoItem != null)
             {
