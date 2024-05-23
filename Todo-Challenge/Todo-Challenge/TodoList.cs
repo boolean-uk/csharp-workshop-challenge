@@ -19,7 +19,7 @@ namespace Todo_Challenge
             Name = name;
         }
 
-        public void IncreaseId()
+        public void IncreaseNextIdByOne()
         {
             NextId++;
         }

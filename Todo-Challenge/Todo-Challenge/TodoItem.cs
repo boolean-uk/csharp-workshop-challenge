@@ -37,7 +37,7 @@ namespace Todo_Challenge
             Id = todoList.NextId;
             Name = name;
             _list = todoList;
-            todoList.IncreaseId();
+            todoList.IncreaseNextIdByOne();
             LinkToPreviousItem();
             todoList.LastTodoItem = this;
         }
