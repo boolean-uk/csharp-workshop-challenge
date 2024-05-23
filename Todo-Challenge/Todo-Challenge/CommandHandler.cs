@@ -14,7 +14,6 @@ namespace Todo_Challenge
         }
         public static string GetTodoItemName(string line)
         {
-            
             string lineWithoutRefNum = line.Remove(0, 1);
             string name = lineWithoutRefNum.Trim();
             return name;
