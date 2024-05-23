@@ -70,6 +70,11 @@ namespace Todo_Challenge
         public void DeleteItemWhereNameIs(string name)
         {
             var item = GetTodoItemByName(name);
+            if (item == null)
+            {
+                Console.WriteLine($"failed to delete ${name}, no such item found");
+                return;
+            }
             var previousItem = GetPreviousTodoItemByName(name);
             if (previousItem == null)
             {
@@ -86,6 +91,11 @@ namespace Todo_Challenge
         public void ToggleItemCompletionStatusWhereNameIs(string name)
         {
             var item = GetTodoItemByName(name);
+            if (item == null)
+            {
+                Console.WriteLine($"failed to toggle completion status of {name}, no such item found");
+                return;
+            }
             item.Completed = !item.Completed;
         }
     }
