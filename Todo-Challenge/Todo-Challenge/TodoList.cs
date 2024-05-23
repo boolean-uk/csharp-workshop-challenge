@@ -14,17 +14,49 @@ namespace Todo_Challenge
         public TodoItem? LastTodoItem { get; set; } = null;
         public int NextId { get; set; } = 1;
 
+        // private retrieval operations executed prior to modifying the list
+        private TodoItem? GetTodoItemByName(string name)
+        {
+            var item = FirstTodoItem;
+            while (item != null && item.Name != name)
+            {
+                item = item.NextTodoItem;
+                continue;
+            }
+            return item;
+        }
+
+        private TodoItem? GetPreviousTodoItemByName(string name)
+        {
+            var item = FirstTodoItem;
+            if (FirstTodoItem != null && FirstTodoItem.Name == name)
+            {
+                return null;
+            }
+
+            while (item != null && item.NextTodoItem != null && item.NextTodoItem.Name != name)
+            {
+                item = item.NextTodoItem;
+                continue;
+            }
+            return item;
+        }
+
+        // is ran upon the start of the application
         public TodoList(string name)
         {
             Name = name;
         }
 
+        // methods ran when a todo item is created
         public void IncreaseNextIdByOne()
         {
             NextId++;
         }
 
         public bool DoesNotContainFirstTodoItem() { return FirstTodoItem == null; }
+
+        // method ran after each list modification so the user may visualise the result
         public void ViewList()
         {
             Console.WriteLine();
@@ -40,33 +72,7 @@ namespace Todo_Challenge
             }
         }
 
-        private TodoItem? GetTodoItemByName(string name)
-        {
-            var item = FirstTodoItem;
-            while (item != null && item.Name != name)
-            {
-                item = item.NextTodoItem;
-                continue;
-            }
-            return item;
-        }
-
-        private TodoItem? GetPreviousTodoItemByName(string name)
-        {
-            var item = FirstTodoItem;
-            if (FirstTodoItem != null &&  FirstTodoItem.Name == name)
-            {
-                return null;
-            }
-
-            while (item != null && item.NextTodoItem != null && item.NextTodoItem.Name != name)
-            {
-                item = item.NextTodoItem;
-                continue;
-            }
-            return item;
-        }
-
+        // list modification operations triggered by commands
         public void DeleteItemWhereNameIs(string name)
         {
             var item = GetTodoItemByName(name);
@@ -88,6 +94,7 @@ namespace Todo_Challenge
                 previousItem.NextTodoItem = item.NextTodoItem;
             }
         }
+
         public void ToggleItemCompletionStatusWhereNameIs(string name)
         {
             var item = GetTodoItemByName(name);
