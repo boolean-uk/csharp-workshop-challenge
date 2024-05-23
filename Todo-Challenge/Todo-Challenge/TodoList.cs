@@ -40,7 +40,7 @@ namespace Todo_Challenge
             }
         }
 
-        private TodoItem GetTodoItemByName(string name)
+        private TodoItem? GetTodoItemByName(string name)
         {
             var item = FirstTodoItem;
             while (item != null && item.Name != name)
