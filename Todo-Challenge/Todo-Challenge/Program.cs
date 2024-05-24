@@ -8,9 +8,6 @@ class Program
     {
         List<TodoItem> todoList = new List<TodoItem>();
 
-        todoList.Add(new TodoItem("Task 1", false));
-        todoList.Add(new TodoItem("Task 2", true));
-
         while (true)
         {
             new Menu();

@@ -52,21 +52,9 @@ namespace Todo_Challenge
                     break;
 
                 case 1:
-                    if (todoList.Count > 0)
-                    {
-                        foreach (var item in todoList)
-                        {
-                            Console.WriteLine($"\nName: {item.Name}\n Completed: {item.Completed}\n");
-                        }
+                    ShowTodoItems(todoList);
 
-                        AskToContinue();
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nYour TodoList is empty :(\n");
-                        AskToContinue();
-                    }
-
+                    AskToContinue();
                     break;
 
                 case 2:
@@ -95,12 +83,29 @@ namespace Todo_Challenge
 
                     todoList.Add(new TodoItem(name, completed));
 
-                    Console.WriteLine("\nTodo Item have been added to the Todo List successfully\n");
+                    Console.WriteLine("\nTodo Item have been added to the Todo List successfully :)\n");
 
                     AskToContinue();
                     break;
 
                 case 3:
+                    Console.Write("\nEnter name of the Todo Item which you would lite to remove: ");
+                    string nameToRemove = Console.ReadLine();
+
+                    var itemToRemove = todoList.Single(item => item.Name == nameToRemove);
+
+                    if (itemToRemove != null)
+                    {
+                        todoList.Remove(itemToRemove);
+
+                        Console.WriteLine("\nTodo Item have been removed from the Todo List successfully :)\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"\nItem with name {nameToRemove} doesn't exist :(\n");
+                    }
+
+                    AskToContinue();
                     break;
             }
         }
@@ -110,6 +115,21 @@ namespace Todo_Challenge
             Console.Write("Press Enter to continue: ");
             Console.ReadLine();
             Console.Clear();
+        }
+
+        private static void ShowTodoItems(List<TodoItem> todoList)
+        {
+            if (todoList.Count > 0)
+            {
+                foreach (var item in todoList)
+                {
+                    Console.WriteLine($"\nName: {item.Name}\n Completed: {item.Completed}\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nYour TodoList is empty :(\n");
+            }
         }
 
     }
