@@ -60,26 +60,23 @@ namespace Todo_Challenge
                 case 2:
                     Console.Write("\nEnter name of the Todo Item: ");
                     string name = Console.ReadLine();
+                    if (name.Length == 0)
+                    {
+                        Console.WriteLine("\nName cannot be empty :(\n");
+                        AskToContinue();
+                        break;
+                    }
+
                     Console.Write("Is this Todo completed? y/n: ");
                     string completedInput = Console.ReadLine();
-
-                    bool completed = false;
-
-                    switch (completedInput)
+                    if (completedInput != "y" && completedInput != "n")
                     {
-                        case "y":
-                            completed = true;
-                            break;
-
-                        case "n":
-                            completed = false;
-                            break;
-
-                        default:
-                            Console.WriteLine("\nInvalid option.\n");
-                            AskToContinue();
-                            break;
+                        Console.WriteLine("\nInvalid completed field :(\n");
+                        AskToContinue();
+                        break;
                     }
+
+                    bool completed = completedInput == "y" ? true : false;
 
                     todoList.Add(new TodoItem(name, completed));
 
@@ -89,13 +86,21 @@ namespace Todo_Challenge
                     break;
 
                 case 3:
+                    ShowTodoItems(todoList);
+
+                    if (todoList.Count == 0)
+                    {
+                        AskToContinue();
+                        break;
+                    }
+
                     Console.Write("\nEnter name of the Todo Item which you would lite to remove: ");
                     string nameToRemove = Console.ReadLine();
 
-                    var itemToRemove = todoList.Single(item => item.Name == nameToRemove);
-
-                    if (itemToRemove != null)
+                    if (todoList.Any(item => item.Name == nameToRemove))
                     {
+                        var itemToRemove = todoList.Single(item => item.Name == nameToRemove);
+
                         todoList.Remove(itemToRemove);
 
                         Console.WriteLine("\nTodo Item have been removed from the Todo List successfully :)\n");
