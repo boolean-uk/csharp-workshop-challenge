@@ -70,13 +70,37 @@ namespace Todo_Challenge
                     break;
 
                 case 2:
+                    Console.Write("\nEnter name of the Todo Item: ");
+                    string name = Console.ReadLine();
+                    Console.Write("Is this Todo completed? y/n: ");
+                    string completedInput = Console.ReadLine();
+
+                    bool completed = false;
+
+                    switch (completedInput)
+                    {
+                        case "y":
+                            completed = true;
+                            break;
+
+                        case "n":
+                            completed = false;
+                            break;
+
+                        default:
+                            Console.WriteLine("\nInvalid option.\n");
+                            AskToContinue();
+                            break;
+                    }
+
+                    todoList.Add(new TodoItem(name, completed));
+
+                    Console.WriteLine("\nTodo Item have been added to the Todo List successfully\n");
+
+                    AskToContinue();
                     break;
 
                 case 3:
-                    break;
-
-                default:
-                    Console.WriteLine("Invalid option.");
                     break;
             }
         }
