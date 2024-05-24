@@ -29,8 +29,13 @@ namespace Todo_Challenge
 
                 if (!optionRes)
                 {
-                    Console.WriteLine("\nInput was not an integer\n");
-                    Thread.Sleep(1500);
+                    Console.WriteLine("\nInput was not an integer :(\n");
+                    continue;
+                }
+
+                if (option < 0 || option > 3)
+                {
+                    Console.WriteLine($"\nOption {option} unavaliable :(\n");
                     continue;
                 }
 
