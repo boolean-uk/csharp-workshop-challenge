@@ -42,5 +42,51 @@ namespace Todo_Challenge
                 return option;
             }
         }
+
+        public static void OptionResponse(List<TodoItem> todoList, int option)
+        {
+            switch (option)
+            {
+                case 0:
+                    Environment.Exit(0);
+                    break;
+
+                case 1:
+                    if (todoList.Count > 0)
+                    {
+                        foreach (var item in todoList)
+                        {
+                            Console.WriteLine($"\nName: {item.Name}\n Completed: {item.Completed}\n");
+                        }
+
+                        AskToContinue();
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nYour TodoList is empty :(\n");
+                        AskToContinue();
+                    }
+
+                    break;
+
+                case 2:
+                    break;
+
+                case 3:
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid option.");
+                    break;
+            }
+        }
+
+        private static void AskToContinue()
+        {
+            Console.Write("Press Enter to continue: ");
+            Console.ReadLine();
+            Console.Clear();
+        }
+
     }
 }

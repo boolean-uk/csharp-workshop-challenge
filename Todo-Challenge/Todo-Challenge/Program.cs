@@ -6,15 +6,19 @@ class Program
 {
     static void Main()
     {
+        List<TodoItem> todoList = new List<TodoItem>();
 
-        while(true)
+        todoList.Add(new TodoItem("Task 1", false));
+        todoList.Add(new TodoItem("Task 2", true));
+
+        while (true)
         {
             new Menu();
             Menu.ShowOptions();
 
             int option = Menu.AskOption();
 
-            Console.ReadLine();
+            Menu.OptionResponse(todoList, option);
         }
     }
 }
