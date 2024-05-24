@@ -17,5 +17,25 @@ namespace Todo_Challenge
             Console.WriteLine("2 - add new item into TODO list");
             Console.WriteLine("3 - remove item from TODO list\n");
         }
+
+        public static int AskOption()
+        {
+            while (true)
+            {
+                Console.Write("Select Option: ");
+                string userInput = Console.ReadLine();
+
+                bool optionRes = int.TryParse(userInput, out int option);
+
+                if (!optionRes)
+                {
+                    Console.WriteLine("\nInput was not an integer\n");
+                    Thread.Sleep(1500);
+                    continue;
+                }
+
+                return option;
+            }
+        }
     }
 }

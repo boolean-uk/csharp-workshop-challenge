@@ -12,13 +12,11 @@ namespace Todo_Challenge
         public string Name { get; set; }
         public bool Completed { get; set; } = false;
 
-        public TodoItem? NewTodoItem { get; set; } = null;
-
-        public TodoItem(int id, string name)
+        public TodoItem(int id, string name, bool completed)
         {
             Id = id;
             Name = name;
-            Completed = false;
+            Completed = completed;
         }
         
     }

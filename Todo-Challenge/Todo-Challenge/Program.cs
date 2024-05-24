@@ -1,9 +1,20 @@
-﻿using System.Text;
+﻿using System.ComponentModel.Design;
+using System.Text;
 using Todo_Challenge;
 
-Console.WriteLine("Welcome to TodoList :)\n\n");
+class Program
+{
+    static void Main()
+    {
 
-new Menu();
-Menu.ShowOptions();
+        while(true)
+        {
+            new Menu();
+            Menu.ShowOptions();
 
-Console.ReadLine();
+            int option = Menu.AskOption();
+
+            Console.ReadLine();
+        }
+    }
+}
