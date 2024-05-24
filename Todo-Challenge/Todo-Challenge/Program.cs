@@ -1,2 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System.Text;
+using Todo_Challenge;
+
+Console.WriteLine("Welcome to TodoList :)\n\n");
+
+new Menu();
+Menu.ShowOptions();
+
+Console.ReadLine();
