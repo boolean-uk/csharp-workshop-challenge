@@ -6,7 +6,7 @@ class Program
     {
         Console.WriteLine("Todo List v0.1\n");
         
-        List<TodoListItem> todoList = [new(0, "Water the plants")];
+        List<TodoListItem> todoList = [new("Water the plants")];
 
         Console.WriteLine("Type 'help' to see the list of commands.\n");
 
@@ -20,11 +20,11 @@ class Program
                     Console.WriteLine("\nThe following commands are available:\n");
                     Console.WriteLine("0 - Exit.\n1 - View Todo List.\n2 - Create a Todo Item.\n3 - Remove a Todo Item.\n4 - Mark Todo Item as complete.\n\n");
                     break;
-                case "0":
+                case "0": // Exit
                     Console.WriteLine("\nExiting...");
                     Environment.Exit(0);
                     break;
-                case "1":
+                case "1": // View TodoList
                     if (todoList.Count < 1)
                     {
                         Console.WriteLine("Todo List is empty.\n");
@@ -35,6 +35,42 @@ class Program
                     {
                         Console.WriteLine($"\nID: {todo.Id} \nTodo: {todo.Name} \nCompleted: {todo.Completed}\n");
                     }
+                    break;
+                case "2": // Create Todo
+                    string? name;
+                    while (true)
+                    {
+                        Console.Write("\nEnter Name: ");
+                        name = Console.ReadLine()?.Trim();
+                        if (!string.IsNullOrEmpty(name))
+                        {
+                            break;
+                        }
+                        Console.WriteLine("Name cannot be empty. Please enter a valid name.");
+                    }
+
+                    bool completed = false;
+                    while (true)
+                    {
+                        Console.Write("Is it completed? (y/n): ");
+                        string? completedInput = Console.ReadLine()?.Trim().ToLower();
+                        if (completedInput == "y")
+                        {
+                            completed = true;
+                            break;
+                        }
+                        else if (completedInput == "n")
+                        {
+                            completed = false;
+                            break;
+                        }
+                        Console.WriteLine("Invalid input. Please enter 'y' or 'n'.");
+                    }
+
+                    TodoListItem newTodo = new(name, completed);
+                    todoList.Add(newTodo); 
+
+                    Console.WriteLine($"\nCreated New Todo: \nID: {newTodo.Id} \nTodo:{newTodo.Name} \nCompleted: {newTodo.Completed}\n");
                     break;
                 default:
                     Console.WriteLine("Unknown command. Type 'help' to see the list of commands.");
