@@ -2,18 +2,20 @@
 {
     internal class TodoListItem
     {
-        public int Id { get; set; } 
+        private static int lastId = -1;
+
+        public int Id { get; private set; } 
         public string Name { get; set; }
         public bool Completed { get; set; }
 
-        public TodoListItem(int id, string name, bool completed)
+        public TodoListItem(string name, bool completed)
         {
-            Id = id;    
+            Id = ++lastId;    
             Name = name;
             Completed = completed;
         }
 
-        public TodoListItem(int id, string name) : this(id, name, false)
+        public TodoListItem(string name) : this( name, false)
         {
         }
     }
