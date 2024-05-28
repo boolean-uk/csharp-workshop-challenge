@@ -5,9 +5,9 @@ namespace Todo_Challenge
 {
     internal class Menu
     {
-        private List<TodoListItem> todoList = new List<TodoListItem>();
+        private readonly List<TodoListItem> todoList = new();
 
-        private void ShowCommands()
+        private static void ShowCommands()
         {
             Console.WriteLine("\nThe following commands are available:\n");
             Console.WriteLine("0 - Exit.\n1 - View Todo List.\n2 - Create a Todo Item.\n3 - Remove a Todo Item.\n4 - Mark Todo Item as complete.\n");
