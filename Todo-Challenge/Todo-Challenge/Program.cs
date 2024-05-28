@@ -41,7 +41,7 @@ class Program
                     string? name;
                     while (true)
                     {
-                        Console.Write("\nEnter Name: ");
+                        Console.Write("\nEnter name of Todo to create: ");
                         name = Console.ReadLine()?.Trim();
 
                         if (!string.IsNullOrEmpty(name))
@@ -77,7 +77,7 @@ class Program
                     Console.WriteLine($"\nCreated New Todo: \n\nID: {newTodo.Id} \nTodo: {newTodo.Name} \nCompleted: {newTodo.Completed}\n");
                     break;
                 case "3": // Remove Todo
-                    Console.Write("\nEnter ID: ");
+                    Console.Write("\nEnter ID of Todo to remove: ");
                     string? idInput = Console.ReadLine()?.Trim();
 
                     if (int.TryParse(idInput, out int id)) 
@@ -99,8 +99,48 @@ class Program
                         Console.WriteLine("Invalid ID. Please enter a valid integer.\n");
                     }
                     break;
+                case "4": // Complete Todo
+                    Console.Write("\nEnter ID of Todo to complete: ");
+                    string? idInput2 = Console.ReadLine()?.Trim();
+
+                    if (int.TryParse(idInput2, out int id2))
+                    {
+                        TodoListItem? todoToUpdate = todoList.Find(todo => todo.Id == id2);
+
+                        if (todoToUpdate == null)
+                        {
+                            Console.WriteLine($"Todo Item with ID: {id2} not found.\n");
+                            break;
+                        }
+
+                        while (true)
+                        {
+                            Console.Write("Mark as completed? (y/n): ");
+                            string? completedInput = Console.ReadLine()?.Trim().ToLower();
+
+                            if (completedInput == "y")
+                            {
+                                todoToUpdate.Completed = true;
+                                break;
+                            }
+                            else if (completedInput == "n")
+                            {
+                                todoToUpdate.Completed = false;
+                                break;
+                            }
+
+                            Console.WriteLine("Invalid input. Please enter 'y' or 'n'.");
+                        }
+
+                        Console.WriteLine($"\nUpdated Todo: \n\nID: {todoToUpdate.Id} \nTodo: {todoToUpdate.Name} \nCompleted: {todoToUpdate.Completed}\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid ID. Please enter a valid integer.\n");
+                    }
+                    break;
                 default:
-                    Console.WriteLine("Unknown command. Type 'help' to see the list of commands.");
+                    Console.WriteLine("\nUnknown command. Type 'help' to see the list of commands.\n");
                     break;
             }
         }
