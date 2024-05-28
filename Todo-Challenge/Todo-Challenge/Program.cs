@@ -19,12 +19,12 @@ while (line != "exit")
             new TodoItem(itemName, list);
             break;
         case '2':
-            list.DeleteItemWhereNameIs(itemName);
+            TodoList.DeleteItemWhereNameIs(itemName, list);
             break;
         case '3':
-            list.ToggleItemCompletionStatusWhereNameIs(itemName);
+            TodoList.ToggleItemCompletionStatusWhereNameIs(itemName, list);
             break;
     }
-    list.ViewList();
+    TodoList.View(list);
     line = Console.ReadLine();
 }

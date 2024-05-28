@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -20,12 +21,12 @@ namespace Todo_Challenge
         {
             if (_list.DoesNotContainFirstTodoItem())
             {
-                _list.FirstTodoItem = this;
+                _list.Head = this;
                 return;
             } 
-            if (_list.LastTodoItem != null)
+            if (_list.Tail != null)
             {
-                _list.LastTodoItem.NextTodoItem = this;
+                _list.Tail.NextTodoItem = this;
             }
         }
 
@@ -41,7 +42,7 @@ namespace Todo_Challenge
             _list = todoList;
             todoList.IncreaseNextIdByOne();
             LinkToPreviousItem();
-            todoList.LastTodoItem = this;
+            todoList.Tail = this;
         }
     }
 }

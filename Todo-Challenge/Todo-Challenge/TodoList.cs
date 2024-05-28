@@ -1,51 +1,72 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Todo_Challenge
 {
-    internal class TodoList
+    internal class TodoList : IEnumerable
     {
         public string Name;
-        public TodoItem? FirstTodoItem { get; set; } = null;
-        public TodoItem? LastTodoItem { get; set; } = null;
-        public int NextId { get; set; } = 1;
+        public TodoItem? Head { get; set; }
+        public TodoItem? Tail { get; set; }
+        public TodoItem? Current { get; set; }
+        public int NextId { get; set; }
 
-        // private retrieval operations executed prior to modifying the list
-        private TodoItem? GetTodoItemByName(string name)
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            var item = FirstTodoItem;
-            while (item != null && item.Name != name)
+            Current = Head;
+
+            while (Current != null)
             {
-                item = item.NextTodoItem;
-                continue;
+                yield return Current;
+                Current = Current.NextTodoItem;
             }
-            return item;
         }
 
-        private TodoItem? GetPreviousTodoItemByName(string name)
+
+        // private retrieval operations executed prior to modifying the list
+        private static TodoItem? GetTodoItemByName(string name, TodoList todoList)
         {
-            var item = FirstTodoItem;
-            if (FirstTodoItem != null && FirstTodoItem.Name == name)
+            foreach (TodoItem item in todoList)
+            {
+                if (item != null && item.Name == name)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        private static TodoItem? GetPreviousTodoItemByName(string name, TodoList todoList)
+        {
+            if (todoList.Head != null && todoList.Head.Name == name)
             {
                 return null;
             }
 
-            while (item != null && item.NextTodoItem != null && item.NextTodoItem.Name != name)
+            foreach (TodoItem item in todoList)
             {
-                item = item.NextTodoItem;
-                continue;
+                if (item != null && item.NextTodoItem != null && item.NextTodoItem.Name == name)
+                {
+                    return item;
+                }
             }
-            return item;
+            return null;
         }
 
         // is ran upon the start of the application
         public TodoList(string name)
         {
             Name = name;
+            Head = null;
+            Tail = null;
+            Current = null;
+            NextId = 1;
         }
 
         // methods ran when a todo item is created
@@ -54,37 +75,35 @@ namespace Todo_Challenge
             NextId++;
         }
 
-        public bool DoesNotContainFirstTodoItem() { return FirstTodoItem == null; }
+        public bool DoesNotContainFirstTodoItem() { return Head == null; }
 
         // method ran after each list modification so the user may visualise the result
-        public void ViewList()
+        public static void View(TodoList todoList)
         {
             Console.WriteLine();
             Console.WriteLine("TODO LIST");
             Console.WriteLine();
-            var item = FirstTodoItem;
-            while (item != null)
+
+            foreach (TodoItem item in todoList)
             {
                 var isComplete = item.ReadCompletionStatus();
                 Console.WriteLine(item.Name + " completion status: " + isComplete);
-                item = item.NextTodoItem;
-
             }
         }
 
         // list modification operations triggered by commands
-        public void DeleteItemWhereNameIs(string name)
+        public static void DeleteItemWhereNameIs(string name, TodoList todoList)
         {
-            var item = GetTodoItemByName(name);
+            var item = GetTodoItemByName(name, todoList);
             if (item == null)
             {
                 Console.WriteLine($"failed to delete ${name}, no such item found");
                 return;
             }
-            var previousItem = GetPreviousTodoItemByName(name);
+            var previousItem = GetPreviousTodoItemByName(name, todoList);
             if (previousItem == null)
             {
-                FirstTodoItem = item.NextTodoItem;
+                todoList.Head = item.NextTodoItem;
                 return;
             }
             else
@@ -95,9 +114,9 @@ namespace Todo_Challenge
             }
         }
 
-        public void ToggleItemCompletionStatusWhereNameIs(string name)
+        public static void ToggleItemCompletionStatusWhereNameIs(string name, TodoList todoList)
         {
-            var item = GetTodoItemByName(name);
+            var item = GetTodoItemByName(name, todoList);
             if (item == null)
             {
                 Console.WriteLine($"failed to toggle completion status of {name}, no such item found");
@@ -105,5 +124,6 @@ namespace Todo_Challenge
             }
             item.Completed = !item.Completed;
         }
+
     }
 }
